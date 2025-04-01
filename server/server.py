@@ -1,8 +1,12 @@
-from flask import Flask,request,jsonify
+from flask import Flask,request,jsonify,send_from_directory
 import util
 
+app = Flask(__name__, static_folder='../', static_url_path='')
 
-app = Flask(__name__)
+@app.route('/')
+def serve_index():
+    return send_from_directory('../', 'index.html')
+
 
 @app.route('/get-location-names')
 def get_location_names():
