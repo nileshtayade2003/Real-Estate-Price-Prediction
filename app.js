@@ -1,3 +1,6 @@
+const API_BASE_URL = window.location.origin; // Automatically gets current domain
+
+
 function getBathValue() {
     var uiBathrooms = document.getElementsByName("uiBathrooms");
     for(var i in uiBathrooms) {
@@ -27,7 +30,10 @@ function getBathValue() {
     var estPrice = document.getElementById("uiEstimatedPrice");
   
     // var url = "http://127.0.0.1:5000/predict_home_price"; //Use this if you are NOT using nginx which is first 7 tutorials
-    var url = "http://127.0.0.1:5000/predict-home-price"; // Use this if  you are using nginx. i.e tutorial 8 and onwards
+    // var url = "http://127.0.0.1:5000/predict-home-price"; // Use this if  you are using nginx. i.e tutorial 8 and onwards
+
+    // Use relative path
+    var url = `${API_BASE_URL}/predict-home-price`;
   
     $.post(url, {
         total_sqft: parseFloat(sqft.value),
@@ -44,7 +50,10 @@ function getBathValue() {
   function onPageLoad() {
     console.log( "document loaded" );
     // var url = "http://127.0.0.1:5000/get_location_names"; // Use this if you are NOT using nginx which is first 7 tutorials
-    var url = "http://127.0.0.1:5000/get-location-names"; // Use this if  you are using nginx. i.e tutorial 8 and onwards
+    // var url = "http://127.0.0.1:5000/get-location-names"; // Use this if  you are using nginx. i.e tutorial 8 and onwards
+
+    var url = `${API_BASE_URL}/get-location-names`;
+    
     $.get(url,function(data, status) {
         console.log("got response for get_location_names request");
         if(data) {
